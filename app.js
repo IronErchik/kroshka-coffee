@@ -85,6 +85,78 @@ let products = [
     "ingredients": "Эспрессо, молоко, сироп из фундука, карамельная крошка.",
     "allergens": "Молоко и орехи. Орехи остаются при замене молока.",
     "milk": "regular"
+  },
+  {
+    "id": "iced-latte",
+    "name": "Айс-латте",
+    "category": "ХОЛОДНОЕ",
+    "filter": "cold",
+    "emoji": "🧊",
+    "badge": "Новинка",
+    "price": 320,
+    "volume": 350,
+    "sizes": [
+      350
+    ],
+    "description": "Эспрессо и прохладное молоко со льдом. Мягкий кофейный вкус для тёплого дня.",
+    "ingredients": "Эспрессо, молоко, лёд.",
+    "allergens": "Молоко. Состав зависит от выбранного молока.",
+    "milk": "regular",
+    "image": "assets/iced-latte.webp",
+    "thumbnail": "assets/iced-latte-400.webp"
+  },
+  {
+    "id": "cappuccino",
+    "name": "Капучино",
+    "category": "КЛАССИКА",
+    "filter": "classic",
+    "emoji": "☕",
+    "badge": "Новинка",
+    "price": 280,
+    "volume": 300,
+    "description": "Классический кофе с воздушной молочной пеной и лёгкой посыпкой какао.",
+    "ingredients": "Эспрессо, молоко, молочная пена, какао.",
+    "allergens": "Молоко. Состав зависит от выбранного молока.",
+    "milk": "regular",
+    "image": "assets/cappuccino.webp",
+    "thumbnail": "assets/cappuccino-400.webp"
+  },
+  {
+    "id": "latte-art",
+    "name": "Латте с рисунком",
+    "category": "КЛАССИКА",
+    "filter": "classic",
+    "emoji": "🤍",
+    "badge": "Новинка",
+    "price": 300,
+    "volume": 300,
+    "description": "Мягкий латте с узором на молочной пенке. Для спокойного утра и любимой книги.",
+    "ingredients": "Эспрессо, молоко, молочная пена.",
+    "allergens": "Молоко. Состав зависит от выбранного молока.",
+    "milk": "regular",
+    "image": "assets/latte-art.webp",
+    "thumbnail": "assets/latte-art-400.webp"
+  },
+  {
+    "id": "americano",
+    "name": "Американо",
+    "category": "КЛАССИКА",
+    "filter": "classic",
+    "emoji": "☕",
+    "badge": "Новинка",
+    "price": 220,
+    "volume": 300,
+    "sizes": [
+      200,
+      300,
+      400
+    ],
+    "description": "Чёрный кофе без молока. Чистый кофейный вкус для небольшой паузы.",
+    "ingredients": "Эспрессо, горячая вода.",
+    "allergens": "В рецепте нет молока и орехов.",
+    "milk": null,
+    "image": "assets/americano.webp",
+    "thumbnail": "assets/americano-400.webp"
   }
 ];
 
@@ -155,26 +227,49 @@ function findProduct(id) {
   return null;
 }
 
-function validSize(product, size) {
-  size = Number(size);
-  if (product.milk === null) {
-    return size === 350;
+// У холодного латте один объём, у горячего кофе можно выбрать чашку.
+function productSizes(product) {
+  if (product.sizes) {
+    return product.sizes;
   }
-  return size === 200 || size === 300 || size === 400;
+  if (product.milk === null) {
+    return [350];
+  }
+  return [200, 300, 400];
+}
+
+function validSize(product, size) {
+  let sizes = productSizes(product);
+  return sizes.indexOf(Number(size)) !== -1;
 }
 
 function itemPrice(product, size, milk) {
   let price = product.price;
+  if (Number(size) === 200) {
+    price = price - 40;
+  }
+  if (Number(size) === 400) {
+    price = price + 50;
+  }
   if (product.milk !== null) {
-    if (Number(size) === 200) {
-      price = price - 40;
-    }
-    if (Number(size) === 400) {
-      price = price + 50;
-    }
     price = price + milks[milk].price - milks[product.milk].price;
   }
   return price;
+}
+
+// У новых напитков фотографии в WebP, у старых остаётся JPEG.
+function productImage(product) {
+  if (product.image) {
+    return product.image;
+  }
+  return 'assets/' + product.id + '.jpg';
+}
+
+function productThumbnail(product) {
+  if (product.thumbnail) {
+    return product.thumbnail;
+  }
+  return productImage(product);
 }
 
 function makeKey(id, size, milk) {
@@ -316,10 +411,7 @@ function showProduct(id) {
     return;
   }
   selectedProduct = product;
-  let sizes = [200, 300, 400];
-  if (product.milk === null) {
-    sizes = [350];
-  }
+  let sizes = productSizes(product);
   let sizeOptions = '';
   for (let i = 0; i < sizes.length; i++) {
     let size = sizes[i];
@@ -359,7 +451,7 @@ function showProduct(id) {
   }
 
   document.getElementById('product-dialog-content').innerHTML = `<div class="product-dialog-layout">
-      <img class="dialog-product-photo" src="assets/${id}.jpg" alt="${product.name}" width="800" height="600">
+      <img class="dialog-product-photo" src="${productImage(product)}" alt="${product.name}" width="800" height="600">
       <form class="product-config" id="product-form">
     <p class="eyebrow">${product.category}</p>
       <h2 id="config-title">${product.name}</h2>
@@ -420,6 +512,9 @@ function cartDetails(item) {
   if (item.milk !== null) {
     text += ' · ' + milks[item.milk].name.toLowerCase() + ' молоко';
   } else {
+    text += ' · без молока';
+  }
+  if (findProduct(item.id).filter === 'cold') {
     text += ' · со льдом';
   }
   return text;
@@ -443,7 +538,7 @@ function renderCart() {
       disabled = 'disabled';
     }
     itemsHTML += `<article class="cart-item">
-      <img src="assets/${product.id}.jpg" alt="${product.name}" width="75" height="84">
+      <img src="${productThumbnail(product)}" alt="${product.name}" width="75" height="84">
       <div class="cart-item-info">
       <h3>${product.name}</h3>
       <p class="cart-item-details">${cartDetails(item)}</p>
