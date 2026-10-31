@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f9f6ef">
+    <meta
+      name="description"
+      content="Крошка — кофе, который делает день теплее. Классика, авторские напитки и маленькие радости. Выберите свой кофе и соберите заказ с собой."
+    >
+    <title>Крошка — кофе и маленькие радости</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#menu">Перейти к меню</a>
+
+    <!-- Общие SVG-иконки -->
+    <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-cup" viewBox="0 0 24 24">
+        <path
+          d="M4 9h13v6a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6V9Zm13 1h2a3 3 0 0 1 0 6h-2M7 3v2m4-3v3m4-2v2"
+        />
+      </symbol>
+      <symbol id="i-bag" viewBox="0 0 24 24">
+        <path d="M5 7h14l1 14H4L5 7Zm3 0V6a4 4 0 0 1 8 0v1" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M4 12h15m-6-6 6 6-6 6" />
+      </symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24">
+        <path d="m12 20-8.2-7.8a5.5 5.5 0 0 1 8.2-7.3 5.5 5.5 0 0 1 8.2 7.3L12 20Z" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 6v6l4 2" />
+      </symbol>
+      <symbol id="i-bean" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="12" rx="7" ry="10" transform="rotate(40 12 12)" />
+        <path d="M17 5c-7 0-3 14-10 14" />
+      </symbol>
+      <symbol id="i-milk" viewBox="0 0 24 24">
+        <path d="M8 3h8v4l3 4v10H5V11l3-4V3Zm0 4h8M5 12h14M8 17h5" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="m16 16 5 5" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M6 18 18 6" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6" />
+      </symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24">
+        <path d="M20 3C8 1 1 9 6 16c7 5 15-2 14-13ZM4 21 16 9" />
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24">
+        <path d="m12 2 2.8 7.2L22 12l-7.2 2.8L12 22l-2.8-7.2L2 12l7.2-2.8L12 2Z" />
+      </symbol>
+    </svg>
+
+    <!-- Шапка и навигация -->
+    <header class="site-header wrap">
+      <a class="brand" href="#" aria-label="Крошка — на главную">
+        <span class="brand-mark">
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M9 17h27v12a12 12 0 0 1-12 12h-3A12 12 0 0 1 9 29V17Z" />
+            <path
+              d="M36 19h3a6 6 0 0 1 0 12h-4M16 11l2-6 6 4 6-4 2 6M19 26h.1M28 26h.1m-7 5 2.5 2 2.5-2"
+            />
+          </svg>
+        </span>
+        <span>
+          <strong>крошка<span class="brand-dot">.</span></strong>
+          <small>кофе и маленькие радости</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Основная навигация">
+        <a class="active" href="#menu">Меню</a>
+        <a href="#about">О нас</a>
+        <a href="#pickup">Как забрать</a>
+      </nav>
+      <div class="header-actions">
+        <button class="location-button" data-action="location">
+          <svg class="icon">
+            <use href="#i-pin" />
+          </svg>
+          <span>На Покровке</span>
+          <span class="chevron">⌄</span>
+        </button>
+        <button class="cart-button" data-action="cart" aria-label="Открыть корзину">
+          <svg class="icon">
+            <use href="#i-bag" />
+          </svg>
+          <span>Корзина</span>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </header>
+    <main>
+
+      <!-- Главный экран -->
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="tiny-spark">✳</span> СВАРЕНО С ТЕПЛОМ, ПОДАНО С ЛЮБОВЬЮ</p>
+          <h1 id="hero-title">Маленькая чашка.<br>Большое <em>счастье.</em></h1>
+          <p class="hero-description">
+            Любимый кофе, нежная пенка и немного магии.<br class="desktop-break"> Загляните за своим хорошим днём.
+          </p>
+          <a class="primary-button" href="#menu">
+            Выбрать свой кофе
+            <svg class="icon">
+              <use href="#i-arrow" />
+            </svg>
+          </a>
+          <div class="hero-note">
+            <span class="note-heart">♡</span>
+            Согреваем руки. И всё, что внутри.
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <img
+            class="hero-image"
+            src="assets/hero.jpg"
+            alt="Капучино с котиком на молочной пенке и свежий круассан на столике кофейни"
+            fetchpriority="high"
+            width="1200"
+            height="800"
+          >
+          <div class="hero-sticker">
+            <span>счастье</span>
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M10 23 12 9l11 7h2l11-7 2 14c4 20-32 20-28 0Z" />
+              <path d="M17 26h1m12 0h1m-10 5 3 2 3-2M8 29l7 1m18 0 7-1" />
+            </svg>
+            <span>в каждой чашке</span>
+          </div>
+          <div class="photo-note">
+            <span class="status-dot"></span>
+            Ваш кофе уже почти готов
+          </div>
+        </div>
+      </section>
+
+      <!-- Преимущества кофейни -->
+      <div class="perks wrap" aria-label="Почему Крошка">
+        <span>
+          <svg class="icon">
+            <use href="#i-bean" />
+          </svg>
+          Зерно свежей обжарки
+        </span>
+        <span>
+          <svg class="icon">
+            <use href="#i-milk" />
+          </svg>
+          Молоко на ваш вкус
+        </span>
+        <span>
+          <svg class="icon">
+            <use href="#i-clock" />
+          </svg>
+          Приготовим за 7–10 минут
+        </span>
+        <span class="perks-signature">Хороший день начинается здесь <span>↗</span></span>
+      </div>
+
+      <!-- Меню: фильтры, поиск и карточки напитков -->
+      <section class="menu-section wrap" id="menu" aria-labelledby="menu-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">НАЙДЁТСЯ ТОТ САМЫЙ</p>
+            <h2 id="menu-title">Что вам <em>по душе?</em></h2>
+          </div>
+          <p>Проверенная классика и наши маленькие<br>эксперименты. Выбирайте настроение.</p>
+        </div>
+        <div class="menu-toolbar">
+          <div class="filter-list" role="group" aria-label="Категории напитков">
+            <button class="filter active" data-filter="all" aria-pressed="true">
+              Все напитки
+              <span>6</span>
+            </button>
+            <button class="filter" data-filter="classic" aria-pressed="false">Классика</button>
+            <button class="filter" data-filter="signature" aria-pressed="false">Авторские</button>
+            <button class="filter" data-filter="decaf" aria-pressed="false">Без эспрессо</button>
+            <button class="filter" data-filter="cold" aria-pressed="false">Холодные</button>
+          </div>
+          <div class="menu-tools">
+            <button
+              class="icon-button favorites-toggle"
+              data-action="favorites"
+              aria-label="Показать избранное"
+              aria-pressed="false"
+            >
+              <svg class="icon">
+                <use href="#i-heart" />
+              </svg>
+            </button>
+            <label class="search-box">
+              <svg class="icon">
+                <use href="#i-search" />
+              </svg>
+              <input
+                id="search"
+                type="search"
+                placeholder="Найти свой кофе"
+                aria-label="Поиск напитков"
+              >
+            </label>
+          </div>
+        </div>
+        <!-- Карточки написаны в HTML, JavaScript только скрывает их при поиске. -->
+        <div id="product-grid" class="product-grid" aria-live="polite">
+          <article class="product-card" data-id="catpuccino" data-category="classic">
+            <div class="product-photo">
+              <button class="photo-button" data-product="catpuccino" aria-label="Выбрать Кот-капучино">
+                <img src="assets/catpuccino.jpg" alt="Кот-капучино" width="800" height="600" loading="lazy">
+              </button>
+              <span class="photo-badge">Любимец гостей</span>
+              <button class="favorite-button icon-button" data-favorite="catpuccino" aria-label="Добавить в избранное: Кот-капучино" aria-pressed="false">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-heart"/>
+                </svg>
+              </button>
+              <span class="drink-emoji" aria-hidden="true">☕</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">КЛАССИКА</span>
+                <span class="product-volume">300 мл</span>
+              </div>
+              <h3 class="product-name">
+                <button class="name-button" data-product="catpuccino">Кот-капучино</button>
+              </h3>
+              <p class="product-description">Нежная молочная пена в форме кошачьей мордочки и сбалансированный эспрессо.</p>
+              <div class="product-bottom">
+                <span class="product-price">290 ₽ <small>/ 300 мл</small>
+                </span>
+                <button class="add-button" data-product="catpuccino" aria-label="Настроить и добавить Кот-капучино">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" data-id="honey-raf" data-category="signature">
+            <div class="product-photo">
+              <button class="photo-button" data-product="honey-raf" aria-label="Выбрать Медовый раф">
+                <img src="assets/honey-raf.jpg" alt="Медовый раф" width="800" height="600" loading="lazy">
+              </button>
+              <span class="photo-badge">Выбор бариста</span>
+              <button class="favorite-button icon-button" data-favorite="honey-raf" aria-label="Добавить в избранное: Медовый раф" aria-pressed="false">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-heart"/>
+                </svg>
+              </button>
+              <span class="drink-emoji" aria-hidden="true">🍯</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">АВТОРСКОЕ</span>
+                <span class="product-volume">300 мл</span>
+              </div>
+              <h3 class="product-name">
+                <button class="name-button" data-product="honey-raf">Медовый раф</button>
+              </h3>
+              <p class="product-description">Сливочный раф с цветочным мёдом и щепоткой корицы — уют в чашке.</p>
+              <div class="product-bottom">
+                <span class="product-price">340 ₽ <small>/ 300 мл</small>
+                </span>
+                <button class="add-button" data-product="honey-raf" aria-label="Настроить и добавить Медовый раф">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" data-id="mocha" data-category="signature">
+            <div class="product-photo">
+              <button class="photo-button" data-product="mocha" aria-label="Выбрать Мокко «Барсик»">
+                <img src="assets/mocha.jpg" alt="Мокко «Барсик»" width="800" height="600" loading="lazy">
+              </button>
+              <button class="favorite-button icon-button" data-favorite="mocha" aria-label="Добавить в избранное: Мокко «Барсик»" aria-pressed="false">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-heart"/>
+                </svg>
+              </button>
+              <span class="drink-emoji" aria-hidden="true">🍫</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">СЛАДКОЕ</span>
+                <span class="product-volume">300 мл</span>
+              </div>
+              <h3 class="product-name">
+                <button class="name-button" data-product="mocha">Мокко «Барсик»</button>
+              </h3>
+              <p class="product-description">Эспрессо, горячий шоколад и взбитые сливки. Для настоящих сладкоежек.</p>
+              <div class="product-bottom">
+                <span class="product-price">360 ₽ <small>/ 300 мл</small>
+                </span>
+                <button class="add-button" data-product="mocha" aria-label="Настроить и добавить Мокко «Барсик»">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" data-id="matcha" data-category="decaf">
+            <div class="product-photo">
+              <button class="photo-button" data-product="matcha" aria-label="Выбрать Матча-латте">
+                <img src="assets/matcha.jpg" alt="Матча-латте" width="800" height="600" loading="lazy">
+              </button>
+              <span class="photo-badge">На овсяном молоке</span>
+              <button class="favorite-button icon-button" data-favorite="matcha" aria-label="Добавить в избранное: Матча-латте" aria-pressed="false">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-heart"/>
+                </svg>
+              </button>
+              <span class="drink-emoji" aria-hidden="true">🍵</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">МАТЧА И ЧАЙ</span>
+                <span class="product-volume">300 мл</span>
+              </div>
+              <h3 class="product-name">
+                <button class="name-button" data-product="matcha">Матча-латте</button>
+              </h3>
+              <p class="product-description">Японская матча на овсяном молоке — мягкий вкус и естественная свежесть.</p>
+              <div class="product-bottom">
+                <span class="product-price">320 ₽ <small>/ 300 мл</small>
+                </span>
+                <button class="add-button" data-product="matcha" aria-label="Настроить и добавить Матча-латте">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" data-id="cold-brew" data-category="cold">
+            <div class="product-photo">
+              <button class="photo-button" data-product="cold-brew" aria-label="Выбрать Колд-брю тоник">
+                <img src="assets/cold-brew.jpg" alt="Колд-брю тоник" width="800" height="600" loading="lazy">
+              </button>
+              <button class="favorite-button icon-button" data-favorite="cold-brew" aria-label="Добавить в избранное: Колд-брю тоник" aria-pressed="false">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-heart"/>
+                </svg>
+              </button>
+              <span class="drink-emoji" aria-hidden="true">🧊</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">ХОЛОДНОЕ</span>
+                <span class="product-volume">350 мл</span>
+              </div>
+              <h3 class="product-name">
+                <button class="name-button" data-product="cold-brew">Колд-брю тоник</button>
+              </h3>
+              <p class="product-description">Освежающий кофе холодного заваривания с тоником, льдом и апельсином.</p>
+              <div class="product-bottom">
+                <span class="product-price">310 ₽ <small>/ 350 мл</small>
+                </span>
+                <button class="add-button" data-product="cold-brew" aria-label="Настроить и добавить Колд-брю тоник">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" data-id="hazelnut" data-category="signature">
+            <div class="product-photo">
+              <button class="photo-button" data-product="hazelnut" aria-label="Выбрать Ореховый латте">
+                <img src="assets/hazelnut.jpg" alt="Ореховый латте" width="800" height="600" loading="lazy">
+              </button>
+              <button class="favorite-button icon-button" data-favorite="hazelnut" aria-label="Добавить в избранное: Ореховый латте" aria-pressed="false">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-heart"/>
+                </svg>
+              </button>
+              <span class="drink-emoji" aria-hidden="true">🌰</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">ДЛЯ ЦЕНИТЕЛЕЙ</span>
+                <span class="product-volume">300 мл</span>
+              </div>
+              <h3 class="product-name">
+                <button class="name-button" data-product="hazelnut">Ореховый латте</button>
+              </h3>
+              <p class="product-description">Латте с сиропом из фундука и карамельной крошкой — десерт в чашке.</p>
+              <div class="product-bottom">
+                <span class="product-price">330 ₽ <small>/ 300 мл</small>
+                </span>
+                <button class="add-button" data-product="hazelnut" aria-label="Настроить и добавить Ореховый латте">+</button>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div id="empty-results" class="empty-results" hidden>
+          <svg class="icon">
+            <use href="#i-cup" />
+          </svg>
+          <h3>Пока ни одной чашки</h3>
+          <p>Попробуйте другое название или добавьте напитки в избранное.</p>
+          <button class="text-button" data-action="reset-filters">
+            Показать все напитки
+            <span>↗</span>
+          </button>
+        </div>
+        <div class="menu-footnote">
+          <svg class="icon">
+            <use href="#i-leaf" />
+          </svg>
+          <p>Ваш кофе — ваши правила. Заменим молоко на овсяное, кокосовое или миндальное.</p>
+          <span>Просто выберите в напитке</span>
+        </div>
+      </section>
+
+      <!-- О кофейне -->
+      <section class="about-section wrap" id="about" aria-labelledby="about-title">
+        <div class="about-mark">
+          <svg class="icon">
+            <use href="#i-cup" />
+          </svg>
+          <span>with love,<br><em>крошка.</em></span>
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">НЕ ТОЛЬКО ПРО КОФЕ</p>
+          <h2 id="about-title">Место для маленькой паузы.</h2>
+          <p>
+            Мы верим, что даже в самом большом городе нужно место, где вам рады. Поэтому варим
+            вкусный кофе, запоминаем любимые напитки и рисуем котиков на пенке. Просто потому, что
+            можем сделать ваш день чуточку теплее.
+          </p>
+        </div>
+        <span class="about-star" aria-hidden="true">✳</span>
+      </section>
+
+      <!-- Адрес и получение заказа -->
+      <section class="pickup-section wrap" id="pickup" aria-labelledby="pickup-title">
+        <div>
+          <p class="eyebrow">ЗАБЕГАЙТЕ, МЫ РЯДОМ</p>
+          <h2 id="pickup-title">До встречи <br>за чашечкой.</h2>
+          <p>Выберите напиток, соберите заказ <br>и заберите по пути к хорошему дню.</p>
+          <p>г. Вологда, ул. Ленина, д. 15</p>
+          <button class="text-button" data-action="location">
+            Кофейня на Покровке
+            <svg class="icon">
+              <use href="#i-arrow" />
+            </svg>
+          </button>
+        </div>
+        <ol class="pickup-steps">
+          <li>
+            <span>01</span>
+            <div>
+              <h3>Найдите свой вкус</h3>
+              <p>Классический, сладкий или с характером.</p>
+            </div>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <h3>Добавьте немного себя</h3>
+              <p>Выберите объём и любимое молоко.</p>
+            </div>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <h3>Заберите свою радость</h3>
+              <p>Кофе готовим ко времени вашего визита.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <!-- Подвал страницы -->
+    <footer class="site-footer wrap">
+      <a class="footer-brand" href="#">крошка.</a>
+      <p>Пусть каждый день будет чуть теплее.</p>
+      <span>Сделано с любовью к кофе · 2026</span>
+      <a href="#" class="back-top" aria-label="В начало страницы">↑</a>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- Настройка напитка -->
+    <dialog id="product-dialog" class="product-dialog" aria-labelledby="config-title">
+      <button class="dialog-close icon-button" data-close aria-label="Закрыть">
+        <svg class="icon">
+          <use href="#i-close" />
+        </svg>
+      </button>
+      <div id="product-dialog-content"></div>
+    </dialog>
+
+    <!-- Корзина и оформление заказа -->
+    <dialog id="cart-dialog" class="cart-dialog" aria-labelledby="cart-title">
+      <div class="drawer-header">
+        <div>
+          <p class="eyebrow">ВАША МАЛЕНЬКАЯ РАДОСТЬ</p>
+          <h2 id="cart-title">Корзина <span id="drawer-count">0</span></h2>
+        </div>
+        <button class="icon-button" data-close aria-label="Закрыть корзину">
+          <svg class="icon">
+            <use href="#i-close" />
+          </svg>
+        </button>
+      </div>
+      <div id="cart-content" class="cart-content"></div>
+    </dialog>
+
+    <!-- Информация о кофейне -->
+    <dialog id="location-dialog" class="location-dialog" aria-labelledby="location-title">
+      <button class="dialog-close icon-button" data-close aria-label="Закрыть">
+        <svg class="icon">
+          <use href="#i-close" />
+        </svg>
+      </button>
+      <span class="location-illustration">
+        <svg class="icon">
+          <use href="#i-pin" />
+        </svg>
+      </span>
+      <p class="eyebrow">ВАША КОФЕЙНЯ</p>
+      <h2 id="location-title">Крошка на Покровке</h2>
+      <p>Уютное место для кофе и маленькой паузы.<br>Здесь можно забрать заказ с собой.</p>
+      <div class="location-detail">
+        <svg class="icon">
+          <use href="#i-pin" />
+        </svg>
+        <span>г. Вологда, ул. Ленина, д. 15</span>
+      </div>
+      <div class="location-detail">
+        <svg class="icon">
+          <use href="#i-clock" />
+        </svg>
+        <span>Каждый день · 08:00–21:00</span>
+      </div>
+      <div class="demo-notice">Это концепт кофейни. Часы работы демонстрационные.</div>
+      <button class="primary-button" data-close>
+        Хорошо, выбираем кофе
+        <svg class="icon">
+          <use href="#i-arrow" />
+        </svg>
+      </button>
+    </dialog>
+  </body>
+</html>

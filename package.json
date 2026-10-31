@@ -1,0 +1,8 @@
+{
+  "name": "kroshka-coffee",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Крошка — уютная кофейня и меню для заказа кофе",
+  "scripts": { "start": "node server.js", "check": "node --check app.js && node --check server.js" },
+  "engines": { "node": ">=18" }
+}
