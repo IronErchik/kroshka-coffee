@@ -184,7 +184,7 @@
           <div class="filter-list" role="group" aria-label="Категории напитков">
             <button class="filter active" data-filter="all" aria-pressed="true">
               Все напитки
-              <span>6</span>
+              <span>10</span>
             </button>
             <button class="filter" data-filter="classic" aria-pressed="false">Классика</button>
             <button class="filter" data-filter="signature" aria-pressed="false">Авторские</button>
@@ -385,6 +385,114 @@
                 <span class="product-price">330 ₽ <small>/ 300 мл</small>
                 </span>
                 <button class="add-button" data-product="hazelnut" aria-label="Настроить и добавить Ореховый латте">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" data-id="iced-latte" data-category="cold">
+            <div class="product-photo">
+              <button class="photo-button" data-product="iced-latte" aria-label="Выбрать Айс-латте">
+                <img src="assets/iced-latte-800.webp"
+                  srcset="assets/iced-latte-400.webp 400w, assets/iced-latte-800.webp 800w"
+                  sizes="(max-width: 680px) 50vw, (max-width: 1300px) 33vw, 400px"
+                  alt="Айс-латте" width="800" height="600" loading="lazy" decoding="async">
+              </button>
+              <span class="photo-badge">Новинка</span>
+              <button class="favorite-button icon-button" data-favorite="iced-latte" aria-label="Добавить в избранное: Айс-латте" aria-pressed="false">
+                <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+              </button>
+              <span class="drink-emoji" aria-hidden="true">🧊</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">ХОЛОДНОЕ</span>
+                <span class="product-volume">350 мл</span>
+              </div>
+              <h3 class="product-name"><button class="name-button" data-product="iced-latte">Айс-латте</button></h3>
+              <p class="product-description">Эспрессо и прохладное молоко со льдом. Мягкий кофейный вкус для тёплого дня.</p>
+              <div class="product-bottom">
+                <span class="product-price">320 ₽ <small>/ 350 мл</small></span>
+                <button class="add-button" data-product="iced-latte" aria-label="Настроить и добавить Айс-латте">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" data-id="cappuccino" data-category="classic">
+            <div class="product-photo">
+              <button class="photo-button" data-product="cappuccino" aria-label="Выбрать Капучино">
+                <img src="assets/cappuccino-800.webp"
+                  srcset="assets/cappuccino-400.webp 400w, assets/cappuccino-800.webp 800w"
+                  sizes="(max-width: 680px) 50vw, (max-width: 1300px) 33vw, 400px"
+                  alt="Капучино" width="800" height="600" loading="lazy" decoding="async">
+              </button>
+              <span class="photo-badge">Новинка</span>
+              <button class="favorite-button icon-button" data-favorite="cappuccino" aria-label="Добавить в избранное: Капучино" aria-pressed="false">
+                <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+              </button>
+              <span class="drink-emoji" aria-hidden="true">☕</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">КЛАССИКА</span>
+                <span class="product-volume">300 мл</span>
+              </div>
+              <h3 class="product-name"><button class="name-button" data-product="cappuccino">Капучино</button></h3>
+              <p class="product-description">Классический кофе с воздушной молочной пеной и лёгкой посыпкой какао.</p>
+              <div class="product-bottom">
+                <span class="product-price">280 ₽ <small>/ 300 мл</small></span>
+                <button class="add-button" data-product="cappuccino" aria-label="Настроить и добавить Капучино">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" data-id="latte-art" data-category="classic">
+            <div class="product-photo">
+              <button class="photo-button" data-product="latte-art" aria-label="Выбрать Латте с рисунком">
+                <img src="assets/latte-art-800.webp"
+                  srcset="assets/latte-art-400.webp 400w, assets/latte-art-800.webp 800w"
+                  sizes="(max-width: 680px) 50vw, (max-width: 1300px) 33vw, 400px"
+                  alt="Латте с рисунком" width="800" height="600" loading="lazy" decoding="async">
+              </button>
+              <span class="photo-badge">Новинка</span>
+              <button class="favorite-button icon-button" data-favorite="latte-art" aria-label="Добавить в избранное: Латте с рисунком" aria-pressed="false">
+                <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+              </button>
+              <span class="drink-emoji" aria-hidden="true">🤍</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">КЛАССИКА</span>
+                <span class="product-volume">300 мл</span>
+              </div>
+              <h3 class="product-name"><button class="name-button" data-product="latte-art">Латте с рисунком</button></h3>
+              <p class="product-description">Мягкий латте с узором на молочной пенке. Для спокойного утра и любимой книги.</p>
+              <div class="product-bottom">
+                <span class="product-price">300 ₽ <small>/ 300 мл</small></span>
+                <button class="add-button" data-product="latte-art" aria-label="Настроить и добавить Латте с рисунком">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card" data-id="americano" data-category="classic">
+            <div class="product-photo">
+              <button class="photo-button" data-product="americano" aria-label="Выбрать Американо">
+                <img src="assets/americano-800.webp"
+                  srcset="assets/americano-400.webp 400w, assets/americano-800.webp 800w"
+                  sizes="(max-width: 680px) 50vw, (max-width: 1300px) 33vw, 400px"
+                  alt="Американо" width="800" height="600" loading="lazy" decoding="async">
+              </button>
+              <span class="photo-badge">Новинка</span>
+              <button class="favorite-button icon-button" data-favorite="americano" aria-label="Добавить в избранное: Американо" aria-pressed="false">
+                <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+              </button>
+              <span class="drink-emoji" aria-hidden="true">☕</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-category">КЛАССИКА</span>
+                <span class="product-volume">300 мл</span>
+              </div>
+              <h3 class="product-name"><button class="name-button" data-product="americano">Американо</button></h3>
+              <p class="product-description">Чёрный кофе без молока. Чистый кофейный вкус для небольшой паузы.</p>
+              <div class="product-bottom">
+                <span class="product-price">220 ₽ <small>/ 300 мл</small></span>
+                <button class="add-button" data-product="americano" aria-label="Настроить и добавить Американо">+</button>
               </div>
             </div>
           </article>
