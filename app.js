@@ -488,6 +488,9 @@ function updateConfigPrice() {
 
 function updateCart() {
   writeStored('kroshka-cart-v1', cart);
+  if (typeof renderMiniCart === 'function') {
+    renderMiniCart();
+  }
   let count = 0;
   for (let i = 0; i < cart.length; i++) {
     count += cart[i].quantity;

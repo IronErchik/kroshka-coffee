@@ -12,6 +12,7 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
+    <script src="widgets.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#menu">Перейти к меню</a>
@@ -584,6 +585,50 @@
       <span>Сделано с любовью к кофе · 2026</span>
       <a href="#" class="back-top" aria-label="В начало страницы">↑</a>
     </footer>
+
+    <!-- Корзина всегда под рукой -->
+    <aside class="mini-cart-widget" aria-label="Быстрая корзина">
+      <section id="mini-cart-panel" class="widget-panel mini-cart-panel" aria-labelledby="mini-cart-title" hidden>
+        <div class="widget-heading">
+          <div><p class="widget-eyebrow">ВАША МАЛЕНЬКАЯ РАДОСТЬ</p><h2 id="mini-cart-title">Ваша корзина</h2></div>
+          <button class="widget-close" type="button" data-widget="close-cart" aria-label="Свернуть быструю корзину">×</button>
+        </div>
+        <div id="mini-cart-items" class="mini-cart-items"></div>
+        <div class="mini-cart-footer">
+          <div class="mini-cart-total"><span>Итого</span><strong id="mini-cart-total">0 ₽</strong></div>
+          <button class="primary-button" id="mini-cart-checkout" type="button" data-widget="checkout">К оформлению <span aria-hidden="true">↗</span></button>
+          <p>Самовывоз · Демо-заказ без оплаты</p>
+        </div>
+      </section>
+      <button class="widget-launcher mini-cart-launcher" type="button" data-widget="toggle-cart" aria-expanded="false" aria-controls="mini-cart-panel">
+        <svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg>
+        <span><strong>Корзина <span id="mini-cart-count">0</span></strong><small id="mini-cart-summary">Пока пусто</small></span>
+        <span class="widget-chevron" aria-hidden="true">⌃</span>
+      </button>
+    </aside>
+
+    <!-- Помощник отвечает по меню и информации на сайте -->
+    <aside class="coffee-chat-widget" aria-label="Помощник кофейни">
+      <section id="coffee-chat-panel" class="widget-panel coffee-chat-panel" aria-labelledby="coffee-chat-title" hidden>
+        <div class="widget-heading chat-heading">
+          <span class="chat-avatar" aria-hidden="true">✳</span>
+          <div><h2 id="coffee-chat-title">Крошка-помощник</h2><p>Подскажу, что выбрать</p></div>
+          <button class="widget-close" type="button" data-widget="close-chat" aria-label="Закрыть чат">×</button>
+        </div>
+        <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Переписка с помощником"></div>
+        <div id="chat-suggestions" class="chat-suggestions" aria-label="Быстрые вопросы"></div>
+        <form id="coffee-chat-form" class="coffee-chat-form">
+          <label class="visually-hidden" for="chat-question">Ваш вопрос помощнику</label>
+          <input id="chat-question" name="question" placeholder="Спросите о кофе…" maxlength="300" autocomplete="off" required>
+          <button type="submit" aria-label="Отправить вопрос">↑</button>
+        </form>
+        <p class="chat-disclaimer">Автоответы по меню сайта · Не оператор</p>
+      </section>
+      <button class="widget-launcher chat-launcher" type="button" data-widget="toggle-chat" aria-expanded="false" aria-controls="coffee-chat-panel">
+        <span class="chat-launcher-star" aria-hidden="true">✳</span><span><strong>Помочь с кофе?</strong><small>Спросите Крошку</small></span><span class="widget-chevron" aria-hidden="true">⌃</span>
+      </button>
+    </aside>
+
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <!-- Настройка напитка -->
